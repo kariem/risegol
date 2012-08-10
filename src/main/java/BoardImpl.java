@@ -1,8 +1,12 @@
 class BoardImpl implements Board {
 	
-//	private Rule rule;
+	private Rule rule;
 
 	private boolean[][] states;
+
+	public BoardImpl(Rule rule) {
+		this.rule=rule;
+	}
 
 	public void set(boolean[][] states) {
 		this.states = states;
@@ -14,7 +18,7 @@ class BoardImpl implements Board {
 		for(int line =0; line < states.length; line++ ) {
 			for(int row=0; row< states[line].length; row++ ) {
 				int neighbours= countNeighbours(line,row);
-//				Rule.calulate()
+				next[line][row]=rule.calculate(states[line][row],neighbours);
 			}			
 		}
 		return states;
@@ -25,6 +29,21 @@ class BoardImpl implements Board {
 	}
 
 	private int countNeighbours(int line, int row) {
-		return 0;
+		int count = 0;
+		
+		for(int lineOffset=-1; lineOffset <=1; lineOffset++) {
+			int lineIndex = line+lineOffset;
+			if(lineIndex <0 || lineIndex >= states.length) continue;
+			for(int rowOffset=-1; rowOffset <=1; rowOffset++) {
+				
+				if(lineOffset==0 && rowOffset==0) continue;
+				int rowIndex = row+rowOffset;
+				if(rowIndex <0 || rowIndex >= states[lineIndex].length) continue;
+				if( states[lineIndex][rowIndex]) {
+					count++;
+				}
+			}
+		}
+		return count;
 	}
 }
