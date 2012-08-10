@@ -21,7 +21,7 @@ class BoardImpl implements Board {
 				next[line][row]=rule.calculate(states[line][row],neighbours);
 			}			
 		}
-		return states;
+		return next;
 	}
 
 	private boolean[][] createEmptyState() {
