@@ -14,7 +14,7 @@ public class StandardRuleTest {
 	@Test
 	public void testKeepsLiving() {
 		Rule r = new StandardRule();
-		assertFalse(r.calculate(true, 2));
+		assertTrue(r.calculate(true, 2));
 	}
 
 	@Test
