@@ -16,5 +16,23 @@ public class BoardImplTest {
 		assertFalse(nextRound[0][1]);
 		assertFalse(nextRound[1][0]);
 		assertFalse(nextRound[1][1]);
+	
 	}
+	@Test
+	public void testSolidBlock() {
+		BoardImpl board = new BoardImpl(new StandardRule());
+		boolean[][] states = new boolean[2][2];
+		states[0][0]=true;
+		states[0][1]=true;
+		states[1][0]=true;
+		states[1][1]=true;
+		board.set(states);
+		boolean[][] nextRound = board.tick();
+
+		assertTrue(nextRound[0][0]);
+		assertTrue(nextRound[0][1]);
+		assertTrue(nextRound[1][0]);
+		assertTrue(nextRound[1][1]);
+	}
+	
 }
